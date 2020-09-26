@@ -10,6 +10,10 @@ This extension was designed to support anti-corruption intiatives around the wor
 
 This extension has been designed to allow publishers to link either Accounts Payable data or Bank Statement data into the existing OCDS contract, but in addition to provide detailed reporting on every element that is usually reported in a single invoice, for instance, the extension includes the ability to record taxes, discounts and line item fees. This granular design is critical for being able to compare the price of different items and the cost of each.
 
+## Deployment
+
+High volumes of transaction data, e.g. a taxi contract where there might be dozens of transactions levied per day week, will likely create excessively large documents, in this instance, it may be desirable to either publish the transaction data independently of the contract, but with a reference to the contract record in each document.
+
 ## Example
 
 ```json
