@@ -1,16 +1,14 @@
 {
   "name": {
-    "en": "Name of extension (required in at least one language)"
+    "en": "GDMP Transaction Extension for OCDS"
   },
   "description": {
-    "en": "A brief description of what this extension does, this will be pulled into the main docs as a link (required in at least one language)"
+    "en": "A detailed transaction extension created by the Global Digital Marketplace programme from the UK Government Digital Service. The extension includes both summary transaction data and detailed information on each transaction, including unit measures, tax and item volumes. The extension is designed to support anti-corruption initiatives around the world."
   },
   "documentationUrl": {
-    "en": "http://httpbin.org/anything/path/to/documentation/in/specified/language"
+    "en": "https://extensions.open-contracting.org/en/extensions/gdmp-transaction/"
   },
   "schemas": [
-    "record-package-schema.json",
-    "release-package-schema.json",
     "release-schema.json"
   ],
   "codelists": [
@@ -19,12 +17,8 @@
   "compatibility": [
     "1.1"
   ],
-  "dependencies": [
-    "http://httpbin.org/anything/path/to/extension1/extension.json",
-    "http://httpbin.org/anything/path/to/extension2/extension.json"
-  ],
   "contactPoint": {
-    "name": "Your name here",
-    "email": "youremail@example.com"
+    "name": "Ian Makgill",
+    "email": "ian@spendnetwork.com"
   }
 }
