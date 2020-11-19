@@ -12,7 +12,7 @@ This extension has been designed to allow publishers to link either Accounts Pay
 
 ## Deployment
 
-High volumes of transaction data, e.g. a taxi contract where there might be dozens of transactions levied per day week, will likely create excessively large documents, in this instance, it may be desirable to either publish the transaction data independently of the contract, but with a reference to the contract record in each document.
+High volumes of transaction data, e.g. a taxi contract where there might be dozens of transactions levied per day week, will likely create excessively large documents, in this instance, it may be desirable to publish the transaction data independently of the contract, but with a reference to the contract record in each document.
 
 ## Example
 
@@ -187,7 +187,7 @@ High volumes of transaction data, e.g. a taxi contract where there might be doze
                     "documents": [{
                         "id": "",
                         "docType": "regulatoryDocument",
-                        "url": "",
+                        "url": ""
                     }]
                 }]
             },
@@ -216,7 +216,7 @@ High volumes of transaction data, e.g. a taxi contract where there might be doze
                     "documents": [{
                         "id": "",
                         "docType": "regulatoryDocument",
-                        "url": "",
+                        "url": ""
                     }]
                 }]
             },
@@ -245,7 +245,7 @@ High volumes of transaction data, e.g. a taxi contract where there might be doze
                     "documents": [{
                         "id": "",
                         "docType": "regulatoryDocument",
-                        "url": "",
+                        "url": ""
                     }]
                 }]
             }],
@@ -322,7 +322,7 @@ High volumes of transaction data, e.g. a taxi contract where there might be doze
                     "documents": [{
                         "id": "",
                         "docType": "regulatoryDocument",
-                        "url": "",
+                        "url": ""
                     }]
                 }]
             }],
@@ -354,7 +354,7 @@ High volumes of transaction data, e.g. a taxi contract where there might be doze
                 "faxNumber": "+44 0123 456 7891",
                 "identifier": {
                     "scheme": "",
-                    "id": 00000000,
+                    "id": "00000000",
                     "uri": ""
                 },
                 "businessFunction": [{
@@ -371,7 +371,7 @@ High volumes of transaction data, e.g. a taxi contract where there might be doze
                     "documents": [{
                         "id": "",
                         "docType": "regulatoryDocument",
-                        "url": "",
+                        "url": ""
                     }]
                 }]
             }],
@@ -608,17 +608,17 @@ High volumes of transaction data, e.g. a taxi contract where there might be doze
                       "unit": {
                         "scheme": "UNCEFACT",
                         "id": "HUR",
-                        "name": "Hours",
+                        "name": "Hours"
                       },
                       "priceSpecification": {
                         "value": {
                             "amount": 250,
-                            "currency": "GBP",
+                            "currency": "GBP"
                         },
                         "quantity": {
                           "value": 2,
                           "unitCode": "HUR"
-                        },
+                        }
                       },
                       "value": {
                         "amount": 500,
@@ -644,11 +644,12 @@ High volumes of transaction data, e.g. a taxi contract where there might be doze
                             "amount": 10,
                             "currency": "GBP"
                         }
-                      }],
-                    },
-    			  }],
-    			}],
-                "releases": [
+                      }]
+                    }
+    			  }]
+    			}]
+            },
+             "releases": [
                {
                     "id": "ocds-a1b1c1-spats-2-033e",
                     "date": "2017-03-02T17:14:37Z",
@@ -673,8 +674,9 @@ High volumes of transaction data, e.g. a taxi contract where there might be doze
                     "tag": "contractTermination",
                     "url": "https://example.com/releases/ex-a1b1c1--033h.json"
                 }
-            ],
-    	   
+            ]
+        },
+        {
             "id": "ocds-a1b1c1-c9b14c18-adc8-11e6-9901-0019b9f3037b",
             "summary": {
                 "ocid": "ocds-a1b1c1-c9b14c18-adc8-11e6-9901-0019b9f3037b",
@@ -825,7 +827,7 @@ High volumes of transaction data, e.g. a taxi contract where there might be doze
                 }
             ]
         }
-    ],
+  ],
     "completion": {
         "endDate": "2018-12-10T00:00:00Z",
         "endDateDetails": "Construction was delayed due to excavation problems when a watercourse was damaged.",
