@@ -60,17 +60,17 @@
       "unit": {
         "scheme": "UNCEFACT",
         "id": "HUR",
-        "name": "Hours",
+        "name": "Hours"
       },
       "priceSpecification": {
         "value": {
             "amount": 250,
-            "currency": "GBP",
+            "currency": "GBP"
         },
         "quantity": {
           "value": 2,
           "unitCode": "HUR"
-        },
+        }
       },
       "value": {
         "amount": 500,
@@ -96,7 +96,7 @@
             "amount": 10,
             "currency": "GBP"
         }
-      }],
-    },
-  }],
+      }]
+    }
+  }]
 }]}
