@@ -1,102 +1,113 @@
 {
-    "transactions": [{
-    "id": "identifier for transaction, maybe a compiled id including date, PO number and buyer",
-    "source": "URL of source data or payments procedures",
-    "purchaseOrderNumber": "Purhcase order details",
-    "paymentMethod": "Mechanism for completing payment e.g. BACS or Purchase card",
-    "description": "description for transaction",
-    "keyDates": {
-    	"invoiceReceiptDate": "2017-01-01T12:30:00Z",
-      	"paymentDueDate": "2017-01-06T00:00:00Z",
-      	"paymentApprovalDate": "2017-01-03T1700:00Z",
-      	"paymentExecutedDate": "2017-03-20T00:00:00Z"
-    },
-    "value": {
-      "amount": 150000,
-      "currency": "GBP"
-    },
-    "payer": {
-      "id": "GB-GOR-XX1234",
-      "executor": {
-        "identifier": 12345678,
-        "name": "Amy Pearson"
+  "transactions": [
+    {
+      "id": "identifier for transaction, maybe a compiled id including date, PO number and buyer",
+      "source": "URL of source data or payments procedures",
+      "purchaseOrderNumber": "Purhcase order details",
+      "paymentMethod": "Mechanism for completing payment e.g. BACS or Purchase card",
+      "description": "description for transaction",
+      "keyDates": {
+        "invoiceReceiptDate": "2017-01-01T12:30:00Z",
+        "paymentDueDate": "2017-01-06T00:00:00Z",
+        "paymentApprovalDate": "2017-01-03T1700:00Z",
+        "paymentExecutedDate": "2017-03-20T00:00:00Z"
       },
-      "authorised": [{
-      	"identifier": 98765432,
-        "name": "Barbara Kennedy"
-      }]
-    },
-    "payee": {
-      "id": "GB-COH-99999999",
-      "name": "Example company"
-    },
-    "tax": [{
-      "name": "name of tax applied",
-      "rate": {
-      	"application": "percentage",
-      	"amount": 10
-  	  },
       "value": {
-        "amount": 10,
+        "amount": 150000,
         "currency": "GBP"
-      }
-    }],
-    "budgetCode": {
-      "id": "2020-04042891",
-      "description": "Code linking the payment to a budget"
-  	},
-    "accountCode": {
-      "id":"1234567-00-23",
-      "description": "Code linking the payment to Accounts Payable code"	
-    },
-    "procurementClassification": {
-      "scheme": "CPV",
-      "id": 44000000,
-      "description": "Drainage",
-      "uri": "https://simap.ted.europa.eu/web/simap/cpv"
-    },
-    "lineItems": [{
-      "lineDescription": "string describing each item",
-      "unit": {
-        "scheme": "UNCEFACT",
-        "id": "HUR",
-        "name": "Hours"
       },
-      "priceSpecification": {
-        "value": {
-            "amount": 250,
-            "currency": "GBP"
+      "payer": {
+        "id": "GB-GOR-XX1234",
+        "executor": {
+          "identifier": 12345678,
+          "name": "Amy Pearson"
         },
-        "quantity": {
-          "value": 2,
-          "unitCode": "HUR"
-        }
+        "authorised": [
+          {
+            "identifier": 98765432,
+            "name": "Barbara Kennedy"
+          }
+        ]
       },
-      "value": {
-        "amount": 500,
-        "currency": "GBP"
+      "payee": {
+        "id": "GB-COH-99999999",
+        "name": "Example company"
       },
-      "discount": {
-        "name": "name of discount",
-        "rate": {
-            "application":"percentage",
-            "amount": 0,
-        "value": {
-          "amount": 500,
-          "currency": "GBP"
-        }
-      },
-      "tax": [{
-        "name": "name of tax applied",
-        "rate": {
+      "tax": [
+        {
+          "name": "name of tax applied",
+          "rate": {
             "application": "percentage",
             "amount": 10
-        },
-        "value": {
+          },
+          "value": {
             "amount": 10,
             "currency": "GBP"
+          }
         }
-      }]
+      ],
+      "budgetCode": {
+        "id": "2020-04042891",
+        "description": "Code linking the payment to a budget"
+      },
+      "accountCode": {
+        "id": "1234567-00-23",
+        "description": "Code linking the payment to Accounts Payable code"
+      },
+      "procurementClassification": {
+        "scheme": "CPV",
+        "id": 44000000,
+        "description": "Drainage",
+        "uri": "https://simap.ted.europa.eu/web/simap/cpv"
+      },
+      "lineItems": [
+        {
+          "lineDescription": "string describing each item",
+          "unit": {
+            "scheme": "UNCEFACT",
+            "id": "HUR",
+            "name": "Hours"
+          },
+          "priceSpecification": {
+            "value": {
+              "amount": 250,
+              "currency": "GBP"
+            },
+            "quantity": {
+              "value": 2,
+              "unitCode": "HUR"
+            }
+          },
+          "value": {
+            "amount": 500,
+            "currency": "GBP"
+          },
+          "discount": {
+            "name": "name of discount",
+            "rate": {
+              "application": "percentage",
+              "amount": 0,
+              "value": {
+                "amount": 500,
+                "currency": "GBP"
+              }
+            },
+            "tax": [
+              {
+                "name": "name of tax applied",
+                "rate": {
+                  "application": "percentage",
+                  "amount": 10
+                },
+                "value": {
+                  "amount": 10,
+                  "currency": "GBP"
+                }
+              }
+            ]
+          }
+        }
+      ]
     }
-  }]
-}]}
+  ]
+}
