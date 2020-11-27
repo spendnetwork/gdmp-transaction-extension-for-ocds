@@ -9,10 +9,9 @@
             "array",
             "null"
           ],
+          "uniqueItems": true,
           "items": {
-            "type": [
-              "string"
-            ]
+            "type": "string"
           }
         }
       }
@@ -26,10 +25,9 @@
             "array",
             "null"
           ],
+          "uniqueItems": true,
           "items": {
-            "type": [
-              "string"
-            ]
+            "type": "string"
           }
         }
       }
@@ -55,10 +53,9 @@
             "array",
             "null"
           ],
+          "uniqueItems": true,
           "items": {
-            "type": [
-              "string"
-            ]
+            "type": "string"
           }
         }
       }
@@ -72,10 +69,9 @@
             "array",
             "null"
           ],
+          "uniqueItems": true,
           "items": {
-            "type": [
-              "string"
-            ]
+            "type": "string"
           }
         }
       }
@@ -89,10 +85,9 @@
             "array",
             "null"
           ],
+          "uniqueItems": true,
           "items": {
-            "type": [
-              "string"
-            ]
+            "type": "string"
           }
         }
       }
@@ -106,6 +101,7 @@
             "array",
             "null"
           ],
+          "uniqueItems": true,
           "items": {
             "type": [
               "string"
@@ -123,6 +119,7 @@
             "array",
             "null"
           ],
+          "uniqueItems": true,
           "items": {
             "type": [
               "string"
@@ -142,7 +139,11 @@
         "id": {
           "title": "Tax Identifier",
           "description": "A local identifier for this tax array item.",
-          "type": "string"
+          "type": [
+            "string",
+            "integer"
+          ],
+          "minLength": 1
         },
         "name": {
           "title": "Name of Tax Applied",
@@ -274,13 +275,21 @@
         "paymentAuthorizers": {
           "title": "Payment Authorizers",
           "description": "An array of details of people involved in the authorization of this payment.",
-          "type": "array",
+          "type": [
+            "array",
+            "null"
+          ],
+          "uniqueItems": true,
           "items": {
             "type": "object",
             "properties": {
               "id": {
                 "title": "Authorizer Identifier",
-                "type": "string",
+                "type": [
+                  "string",
+                  "integer"
+                ],
+                "minLength": 1,
                 "description": "An local identifier for this authorizer array item"
               },
               "name": {
@@ -299,7 +308,10 @@
         "taxes": {
           "title": "Taxes",
           "description": "A detailed breakdown of taxes applied ",
-          "type": "array",
+          "type": [
+            "array",
+            "null"
+          ],
           "uniqueItems": true,
           "items": {
             "$ref": "#/definitions/Tax"
@@ -327,6 +339,7 @@
             "array",
             "null"
           ],
+          "uniqueItems": true,
           "required": [
             "id"
           ],
@@ -409,7 +422,10 @@
     "Transactions": {
       "title": "Transactions",
       "description": "An array of transactions with a detailed breakdown of costs, taxes and persons involved",
-      "type": "array",
+      "type": [
+        "array",
+        "null"
+      ],
       "uniqueItems": true,
       "items": {
         "$ref": "#/definitions/Transaction"
