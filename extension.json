@@ -11,6 +11,11 @@
   "schemas": [
     "release-schema.json"
   ],
+  "testDependencies": [
+    "https://raw.githubusercontent.com/open-contracting-extensions/ocds_bid_extension/master/extension.json",
+    "https://raw.githubusercontent.com/open-contracting-extensions/ocds_finance_extension/master/extension.json",
+    "https://raw.githubusercontent.com/open-contracting-extensions/ocds_participationFee_extension/master/extension.json"
+  ],
   "compatibility": [
     "1.1"
   ],
