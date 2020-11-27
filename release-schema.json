@@ -135,6 +135,9 @@
       "title": "Tax Details",
       "description": "A breakdown of a single tax applied.",
       "type": "object",
+      "required": [
+        "id"
+      ],
       "properties": {
         "id": {
           "title": "Tax Identifier",
@@ -144,7 +147,10 @@
         "name": {
           "title": "Name of Tax Applied",
           "description": "A name or short description of the tax applied.",
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "rate": {
           "title": "Tax Rate",
@@ -178,29 +184,14 @@
           "minLength": 1,
           "description": "A unique identifier for this transaction, SHOULD be compiled id including date, PO number and buyer."
         },
-        "source": {
-          "title": "Payment Source Details",
-          "type": "object",
-          "description": "Details of source data or payments procedures.",
-          "properties": {
-            "description": {
-              "title": "Transaction Source Description",
-              "description": "The description or official name of the source data location.",
-              "type": [
-                "string",
-                "null"
-              ]
-            },
-            "url": {
-              "title": "Transaction Source URL",
-              "description": "A URI pointing to the source data or payments procedures of this transaction.",
-              "type": [
-                "string",
-                "null"
-              ],
-              "format": "uri"
-            }
-          }
+        "sourceUrl": {
+          "title": "Transaction Source URL",
+          "description": "A URI pointing to the source data or payments procedures of this transaction.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
         },
         "purchaseOrderNumber": {
           "title": "Purchase Order Number",
@@ -226,48 +217,41 @@
           ],
           "description": "A description for this transaction."
         },
-        "keyDates": {
-          "title": "Key Transaction Dates",
-          "description": "Details of associated dates for this transaction.",
-          "type": "object",
-          "properties": {
-            "invoiceReceiptDate": {
-              "title": "Invoice Receipt Date",
-              "description": "The date on which the invoice is received",
-              "type": [
-                "string",
-                "null"
-              ],
-              "format": "date-time"
-            },
-            "paymentDueDate": {
-              "title": "Payment Due Date",
-              "description": "The date on which this payment is due.",
-              "type": [
-                "string",
-                "null"
-              ],
-              "format": "date-time"
-            },
-            "paymentApprovalDate": {
-              "title": "Payment Approval Date",
-              "description": "The date on which this payment is approved.",
-              "type": [
-                "string",
-                "null"
-              ],
-              "format": "date-time"
-            },
-            "paymentExecutedDate": {
-              "title": "Payment Execution Date",
-              "description": "The date on which this payment is executed.",
-              "type": [
-                "string",
-                "null"
-              ],
-              "format": "date-time"
-            }
-          }
+        "invoiceReceiptDate": {
+          "title": "Invoice Receipt Date",
+          "description": "The date on which the invoice is received",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "paymentDueDate": {
+          "title": "Payment Due Date",
+          "description": "The date on which this payment is due.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "paymentApprovalDate": {
+          "title": "Payment Approval Date",
+          "description": "The date on which this payment is approved.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "paymentExecutedDate": {
+          "title": "Payment Execution Date",
+          "description": "The date on which this payment is executed.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
         },
         "value": {
           "title": "Transaction value",
@@ -279,46 +263,35 @@
           "description": "A reference for the organization from which the funds in this transaction originate.",
           "$ref": "#/definitions/OrganizationReference"
         },
-        "payerRoleDetails": {
-          "title": "Payer Role Details",
-          "description": "Details of the persons involved in the authorisation and execution of the payment.",
-          "type": "object",
-          "properties": {
-            "executor": {
-              "title": "Payment executor",
-              "description": "The person who executed the payment of this transaction",
-              "type": "object",
-              "properties": {
-                "identifier": {
-                  "title": "Executor identifier",
-                  "type": "string",
-                  "description": "An identifier for the person who executed this transaction"
-                },
-                "name": {
-                  "title": "Executor Name",
-                  "type": "string",
-                  "description": "The name of the person who executed this transaction"
-                }
-              }
-            },
-            "authorizers": {
-              "title": "Payment Authorizers",
-              "description": "An array of details of people involved in the authorization of this payment.",
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "identifier": {
-                    "title": "Authorizer Identifier",
-                    "type": "string",
-                    "description": "An identifier for the person who authorized this transaction"
-                  },
-                  "name": {
-                    "title": "Authorizer Name",
-                    "type": "string",
-                    "description": "The name of the person who authorized this transaction"
-                  }
-                }
+        "paymentExecutor": {
+          "title": "Payment executor",
+          "description": "The person who executed the payment of this transaction",
+          "type": [
+            "string",
+            "null"
+          ],
+          "name": {
+            "title": "Executor Name",
+            "type": "string",
+            "description": "The name of the person who executed this transaction"
+          }
+        },
+        "paymentAuthorizers": {
+          "title": "Payment Authorizers",
+          "description": "An array of details of people involved in the authorization of this payment.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "title": "Authorizer Identifier",
+                "type": "string",
+                "description": "An local identifier for this authorizer array item"
+              },
+              "name": {
+                "title": "Authorizer Name",
+                "type": "string",
+                "description": "The name of the person who authorized this transaction"
               }
             }
           }
@@ -341,6 +314,9 @@
           "title": "Budget Code",
           "description": "Reference code for the budget of this transaction.",
           "type": "object",
+          "required": [
+            "id"
+          ],
           "properties": {
             "id": {
               "title": "Budget Code ID",
@@ -349,7 +325,10 @@
             },
             "description": {
               "title": "Budget Code Description",
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "description": "Description of the identifier linking the payment to a budget"
             }
           }
@@ -358,6 +337,9 @@
           "title": "Account Code",
           "description": "Code linking the payment to Accounts Payable code.",
           "type": "object",
+          "required": [
+            "id"
+          ],
           "properties": {
             "id": {
               "title": "Account Code ID",
@@ -366,12 +348,15 @@
             },
             "description": {
               "title": "Account Code Description",
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "description": "Description of the identifier linking the payment to a budget"
             }
           }
         },
-        "Classification": {
+        "classification": {
           "title": "Transaction Classification",
           "description": "A classification associated with items covered in this transaction.",
           "$ref": "#/definitions/Classification"
@@ -383,139 +368,130 @@
             "array",
             "null"
           ],
+          "required": [
+            "id"
+          ],
           "items": {
             "type": "object",
             "properties": {
-              "title": "Line Item",
-              "description": "One item in a breakdown of the transaction items.",
-              "type": "object",
-              "properties": {
-                "id": {
-                  "title": "Line Item ID",
-                  "description": "A locally unique identifier for this Line Item. Used to track changes to this <object_name> and to [merge](https://standard.open-contracting.org/latest/en/schema/merging/#merging) multiple releases to create a record.",
-                  "type": [
-                    "string",
-                    "integer"
-                  ],
-                  "minLength": 1
-                },
-                "description": {
-                  "title": "Line Item Description",
-                  "description": "A description to describe this line item.",
-                  "type": [
-                    "string",
-                    "null"
-                  ]
-                },
-                "priceSpecification": {
-                  "title": "Price Specification",
-                  "description": "Breakdown of units and price per unit.",
-                  "type": "object",
-                  "properties": {
-                    "unit": {
-                      "title": "Unit",
-                      "description": "A description of the unit in which the supplies, services or works are provided (e.g. hours, kilograms) and the unit-price.",
-                      "type": "object",
-                      "properties": {
-                        "scheme": {
-                          "title": "Scheme",
-                          "description": "The list from which identifiers for units of measure are taken, using the open [unitClassificationScheme](https://standard.open-contracting.org/1.1/en/schema/codelists/#unit-classification-scheme) codelist. 'UNCEFACT' is recommended.",
-                          "type": [
-                            "string",
-                            "null"
-                          ],
-                          "codelist": "unitClassificationScheme.csv",
-                          "openCodelist": true
-                        },
-                        "id": {
-                          "title": "ID",
-                          "description": "The identifier from the codelist referenced in the `scheme` field. Check the [unitClassificationScheme](https://standard.open-contracting.org/1.1/en/schema/codelists/#unit-classification-scheme) codelist for details of how to find and use identifiers from the scheme in use.",
-                          "type": [
-                            "string",
-                            "null"
-                          ],
-                          "versionId": true
-                        },
-                        "name": {
-                          "title": "Name",
-                          "description": "Name of the unit.",
-                          "type": [
-                            "string",
-                            "null"
-                          ]
-                        },
-                        "value": {
-                          "title": "Value",
-                          "description": "The monetary value of a single unit.",
-                          "$ref": "#/definitions/Value"
-                        },
-                        "uri": {
-                          "title": "URI",
-                          "description": "The machine-readable URI for the unit of measure, provided by the scheme.",
-                          "format": "uri",
-                          "type": [
-                            "string",
-                            "null"
-                          ]
-                        }
-                      },
-                      "patternProperties": {
-                        "^(name_(((([A-Za-z]{2,3}(-([A-Za-z]{3}(-[A-Za-z]{3}){0,2}))?)|[A-Za-z]{4}|[A-Za-z]{5,8})(-([A-Za-z]{4}))?(-([A-Za-z]{2}|[0-9]{3}))?(-([A-Za-z0-9]{5,8}|[0-9][A-Za-z0-9]{3}))*(-([0-9A-WY-Za-wy-z](-[A-Za-z0-9]{2,8})+))*(-(x(-[A-Za-z0-9]{1,8})+))?)|(x(-[A-Za-z0-9]{1,8})+)))$": {
-                          "type": [
-                            "string",
-                            "null"
-                          ]
-                        }
-                      }
-                    },
-                    "quantity": {
-                      "title": "Quantity",
-                      "description": "The number of units to be provided.",
-                      "type": [
-                        "number",
-                        "null"
-                      ]
-                    }
+              "id": {
+                "title": "Line Item ID",
+                "description": "A locally unique identifier for this Line Item. Used to track changes to this line item and to [merge](https://standard.open-contracting.org/latest/en/schema/merging/#merging) multiple releases to create a record.",
+                "type": [
+                  "string",
+                  "integer"
+                ],
+                "minLength": 1
+              },
+              "description": {
+                "title": "Line Item Description",
+                "description": "A description detailing the contents covered in this line item.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "unit": {
+                "title": "Unit",
+                "description": "A description of the unit in which the supplies, services or works are provided (e.g. hours, kilograms) and the unit-price.",
+                "type": "object",
+                "properties": {
+                  "scheme": {
+                    "title": "Scheme",
+                    "description": "The list from which identifiers for units of measure are taken, using the open [unitClassificationScheme](https://standard.open-contracting.org/1.1/en/schema/codelists/#unit-classification-scheme) codelist. 'UNCEFACT' is recommended.",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "codelist": "unitClassificationScheme.csv",
+                    "openCodelist": true
+                  },
+                  "id": {
+                    "title": "ID",
+                    "description": "The identifier from the codelist referenced in the `scheme` field. Check the [unitClassificationScheme](https://standard.open-contracting.org/1.1/en/schema/codelists/#unit-classification-scheme) codelist for details of how to find and use identifiers from the scheme in use.",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "versionId": true
+                  },
+                  "name": {
+                    "title": "Name",
+                    "description": "Name of the unit.",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "value": {
+                    "title": "Value",
+                    "description": "The monetary value of a single unit.",
+                    "$ref": "#/definitions/Value"
+                  },
+                  "uri": {
+                    "title": "URI",
+                    "description": "The machine-readable URI for the unit of measure, provided by the scheme.",
+                    "format": "uri",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
                   }
                 },
-                "value": {
-                  "title": "Total Line Item Value",
-                  "$ref": "#/definitions/Value",
-                  "description": "The total value of this line item."
-                },
-                "discount": {
-                  "title": "Discount",
-                  "description": "Details of any discount that was applied.",
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "title": "Discount Name",
-                      "description": "A name describing the discount applied.",
-                      "type": [
-                        "string",
-                        "null"
-                      ]
-                    },
-                    "rate": {
-                      "title": "Discount Rate",
-                      "description": "The rate of the discount applied given as a decimal.",
-                      "type": [
-                        "number",
-                        "null"
-                      ]
-                    },
-                    "value": {
-                      "title": "Discount value",
-                      "$ref": "#/definitions/Value",
-                      "description": "The value discounted in this item."
-                    }
+                "patternProperties": {
+                  "^(name_(((([A-Za-z]{2,3}(-([A-Za-z]{3}(-[A-Za-z]{3}){0,2}))?)|[A-Za-z]{4}|[A-Za-z]{5,8})(-([A-Za-z]{4}))?(-([A-Za-z]{2}|[0-9]{3}))?(-([A-Za-z0-9]{5,8}|[0-9][A-Za-z0-9]{3}))*(-([0-9A-WY-Za-wy-z](-[A-Za-z0-9]{2,8})+))*(-(x(-[A-Za-z0-9]{1,8})+))?)|(x(-[A-Za-z0-9]{1,8})+)))$": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
                   }
-                },
-                "tax": {
-                  "title": "Line Item Tax",
-                  "description": "Tax per this line item.",
-                  "$ref": "#/definitions/Tax"
                 }
+              },
+              "quantity": {
+                "title": "Quantity",
+                "description": "The number of units to be provided.",
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "value": {
+                "title": "Total Line Item Value",
+                "$ref": "#/definitions/Value",
+                "description": "The total value of this line item."
+              },
+              "discount": {
+                "title": "Discount",
+                "description": "Details of any discount that was applied.",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "title": "Discount Name",
+                    "description": "A name describing the discount applied.",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "rate": {
+                    "title": "Discount Rate",
+                    "description": "The rate of the discount applied given as a decimal.",
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "value": {
+                    "title": "Discount value",
+                    "$ref": "#/definitions/Value",
+                    "description": "The value discounted in this item."
+                  }
+                }
+              },
+              "tax": {
+                "title": "Line Item Tax",
+                "description": "Tax per this line item.",
+                "$ref": "#/definitions/Tax"
               }
             }
           }
