@@ -131,7 +131,7 @@
         }
       }
     },
-    "Transaction": {
+    "TransactionDetails": {
       "title": "Transaction",
       "description": "A record of monetary exchange including who was involved, and the option of unit measures, tax and item volumes.",
       "type": "object",
