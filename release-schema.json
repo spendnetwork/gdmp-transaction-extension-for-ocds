@@ -265,16 +265,11 @@
         },
         "paymentExecutor": {
           "title": "Payment executor",
-          "description": "The person who executed the payment of this transaction",
+          "description": "The name of the person who executed the payment of this transaction",
           "type": [
             "string",
             "null"
-          ],
-          "name": {
-            "title": "Executor Name",
-            "type": "string",
-            "description": "The name of the person who executed this transaction"
-          }
+          ]
         },
         "paymentAuthorizers": {
           "title": "Payment Authorizers",
@@ -313,48 +308,12 @@
         "budgetCode": {
           "title": "Budget Code",
           "description": "Reference code for the budget of this transaction.",
-          "type": "object",
-          "required": [
-            "id"
-          ],
-          "properties": {
-            "id": {
-              "title": "Budget Code ID",
-              "description": "Identifier linking the payment to a budget.",
-              "type": "string"
-            },
-            "description": {
-              "title": "Budget Code Description",
-              "type": [
-                "string",
-                "null"
-              ],
-              "description": "Description of the identifier linking the payment to a budget"
-            }
-          }
+          "$ref": "#/definitions/Classification"
         },
         "accountCode": {
           "title": "Account Code",
           "description": "Code linking the payment to Accounts Payable code.",
-          "type": "object",
-          "required": [
-            "id"
-          ],
-          "properties": {
-            "id": {
-              "title": "Account Code ID",
-              "description": "Code linking the payment to Accounts Payable code",
-              "type": "string"
-            },
-            "description": {
-              "title": "Account Code Description",
-              "type": [
-                "string",
-                "null"
-              ],
-              "description": "Description of the identifier linking the payment to a budget"
-            }
-          }
+          "$ref": "#/definitions/Classification"
         },
         "classification": {
           "title": "Transaction Classification",
@@ -392,60 +351,9 @@
                 ]
               },
               "unit": {
-                "title": "Unit",
+                "title": "Line Item Unit",
                 "description": "A description of the unit in which the supplies, services or works are provided (e.g. hours, kilograms) and the unit-price.",
-                "type": "object",
-                "properties": {
-                  "scheme": {
-                    "title": "Scheme",
-                    "description": "The list from which identifiers for units of measure are taken, using the open [unitClassificationScheme](https://standard.open-contracting.org/1.1/en/schema/codelists/#unit-classification-scheme) codelist. 'UNCEFACT' is recommended.",
-                    "type": [
-                      "string",
-                      "null"
-                    ],
-                    "codelist": "unitClassificationScheme.csv",
-                    "openCodelist": true
-                  },
-                  "id": {
-                    "title": "ID",
-                    "description": "The identifier from the codelist referenced in the `scheme` field. Check the [unitClassificationScheme](https://standard.open-contracting.org/1.1/en/schema/codelists/#unit-classification-scheme) codelist for details of how to find and use identifiers from the scheme in use.",
-                    "type": [
-                      "string",
-                      "null"
-                    ],
-                    "versionId": true
-                  },
-                  "name": {
-                    "title": "Name",
-                    "description": "Name of the unit.",
-                    "type": [
-                      "string",
-                      "null"
-                    ]
-                  },
-                  "value": {
-                    "title": "Value",
-                    "description": "The monetary value of a single unit.",
-                    "$ref": "#/definitions/Value"
-                  },
-                  "uri": {
-                    "title": "URI",
-                    "description": "The machine-readable URI for the unit of measure, provided by the scheme.",
-                    "format": "uri",
-                    "type": [
-                      "string",
-                      "null"
-                    ]
-                  }
-                },
-                "patternProperties": {
-                  "^(name_(((([A-Za-z]{2,3}(-([A-Za-z]{3}(-[A-Za-z]{3}){0,2}))?)|[A-Za-z]{4}|[A-Za-z]{5,8})(-([A-Za-z]{4}))?(-([A-Za-z]{2}|[0-9]{3}))?(-([A-Za-z0-9]{5,8}|[0-9][A-Za-z0-9]{3}))*(-([0-9A-WY-Za-wy-z](-[A-Za-z0-9]{2,8})+))*(-(x(-[A-Za-z0-9]{1,8})+))?)|(x(-[A-Za-z0-9]{1,8})+)))$": {
-                    "type": [
-                      "string",
-                      "null"
-                    ]
-                  }
-                }
+                "$ref": "#/definitions/Classification"
               },
               "quantity": {
                 "title": "Quantity",
