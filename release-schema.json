@@ -3,14 +3,16 @@
     "Document": {
       "properties": {
         "relatedTransactions": {
-          "title": "Related transaction(s)",
+          "title": "Related transactions",
           "description": "Identifiers of any transactions detailed in the `Transactions` section relating to this document.",
+          "uniqueItems": true,
+          "minItems": 1,
           "type": [
             "array",
             "null"
           ],
-          "uniqueItems": true,
           "items": {
+            "minLength": 1,
             "type": "string"
           }
         }
@@ -18,15 +20,17 @@
     },
     "ParticipationFee": {
       "properties": {
-        "relatedTransaction": {
-          "title": "Related transaction",
+        "relatedTransactions": {
+          "title": "Related Transactions",
           "description": "Identifiers of any transactions detailed in the `Transactions` section relating to fees exchanged for this bid.",
           "type": [
             "array",
             "null"
           ],
           "uniqueItems": true,
+          "minItems": 1,
           "items": {
+            "minLength": 1,
             "type": "string"
           }
         }
@@ -34,27 +38,35 @@
     },
     "Item": {
       "properties": {
-        "relatedTransaction": {
+        "relatedTransactions": {
           "title": "Related Transactions",
           "description": "Identifiers of any transactions detailed in the `Transactions` section related to this item detailed.",
+          "uniqueItems": true,
+          "minItems": 1,
           "type": [
-            "string",
+            "array",
             "null"
-          ]
+          ],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          }
         }
       }
     },
     "Milestone": {
       "properties": {
         "relatedTransactions": {
-          "title": "Related transaction(s)",
+          "title": "Related transactions",
           "description": "Identifiers of any transactions detailed in the `Transactions` section relating to this award.",
+          "uniqueItems": true,
+          "minItems": 1,
           "type": [
             "array",
             "null"
           ],
-          "uniqueItems": true,
           "items": {
+            "minLength": 1,
             "type": "string"
           }
         }
@@ -63,14 +75,16 @@
     "Award": {
       "properties": {
         "relatedTransactions": {
-          "title": "Related Transaction(s)",
-          "description": "Identifiers of any transactions detailed in the `Transactions` section relating to this payment milestone.",
+          "title": "Related Transactions",
+          "description": "Identifiers of any transactions detailed in the `Transactions` section relating to this award.",
+          "uniqueItems": true,
+          "minItems": 1,
           "type": [
             "array",
             "null"
           ],
-          "uniqueItems": true,
           "items": {
+            "minLength": 1,
             "type": "string"
           }
         }
@@ -81,12 +95,14 @@
         "relatedTransactions": {
           "title": "Related Transactions",
           "description": "Identifiers of any transactions detailed in the `Transactions` section relating to this contract.",
+          "uniqueItems": true,
+          "minItems": 1,
           "type": [
             "array",
             "null"
           ],
-          "uniqueItems": true,
           "items": {
+            "minLength": 1,
             "type": "string"
           }
         }
@@ -97,15 +113,15 @@
         "relatedTransaction": {
           "title": "Related transaction",
           "description": "Identifiers of any transactions detailed in the `Transactions` section relating to fees exchanged for this bid.",
+          "uniqueItems": true,
+          "minItems": 1,
           "type": [
             "array",
             "null"
           ],
-          "uniqueItems": true,
           "items": {
-            "type": [
-              "string"
-            ]
+            "minLength": 1,
+            "type": "string"
           }
         }
       }
@@ -115,15 +131,15 @@
         "relatedTransactions": {
           "title": "Related Transactions",
           "description": "Identifiers of any transactions detailed in the `Transactions` section which were financed by this agreement.",
+          "uniqueItems": true,
+          "minItems": 1,
           "type": [
             "array",
             "null"
           ],
-          "uniqueItems": true,
           "items": {
-            "type": [
-              "string"
-            ]
+            "minLength": 1,
+            "type": "string"
           }
         }
       }
@@ -140,15 +156,13 @@
         "id": {
           "title": "Tax Identifier",
           "description": "A local identifier for this tax array item.",
-          "type": [
-            "string",
-            "integer"
-          ],
-          "minLength": 1
+          "minLength": 1,
+          "type": "string"
         },
         "name": {
           "title": "Name of Tax Applied",
           "description": "A name or short description of the tax applied.",
+          "minLength": 1,
           "type": [
             "string",
             "null"
@@ -169,7 +183,7 @@
         }
       }
     },
-    "TransactionDetails": {
+    "TransactionDetail": {
       "title": "Transaction",
       "description": "A record of monetary exchange including who was involved, and the option of unit measures, tax and item volumes.",
       "type": "object",
@@ -180,11 +194,11 @@
       "properties": {
         "id": {
           "title": "Transaction ID",
+          "minLength": 1,
           "type": [
             "string",
             "integer"
           ],
-          "minLength": 1,
           "description": "A unique identifier for this transaction, SHOULD be compiled id including date, PO number and buyer."
         },
         "sourceUrl": {
@@ -198,6 +212,7 @@
         },
         "purchaseOrderNumber": {
           "title": "Purchase Order Number",
+          "minLength": 1,
           "type": [
             "string",
             "null"
@@ -206,19 +221,21 @@
         },
         "paymentMethod": {
           "title": "Payment Method",
+          "description": "Mechanism for completing payment, for example BACS or Purchase card.",
+          "minLength": 1,
           "type": [
             "string",
             "null"
-          ],
-          "description": "Mechanism for completing payment e.g. BACS or Purchase card."
+          ]
         },
         "description": {
           "title": "Transaction description",
+          "description": "An string covering details for this transaction.",
+          "minLength": 1,
           "type": [
             "string",
             "null"
-          ],
-          "description": "A description for this transaction."
+          ]
         },
         "invoiceReceiptDate": {
           "title": "Invoice Receipt Date",
@@ -269,6 +286,7 @@
         "paymentExecutor": {
           "title": "Payment executor",
           "description": "The name of the person who executed the payment of this transaction",
+          "minLength": 1,
           "type": [
             "string",
             "null"
@@ -277,27 +295,27 @@
         "paymentAuthorizers": {
           "title": "Payment Authorizers",
           "description": "An array of details of people involved in the authorization of this payment.",
+          "uniqueItems": true,
+          "minItems": 1,
           "type": [
             "array",
             "null"
           ],
-          "uniqueItems": true,
           "items": {
             "type": "object",
+            "minProperties": 1,
             "properties": {
               "id": {
                 "title": "Authorizer Identifier",
-                "type": [
-                  "string",
-                  "integer"
-                ],
+                "description": "An local identifier for this authorizer array item",
                 "minLength": 1,
-                "description": "An local identifier for this authorizer array item"
+                "type": "string"
               },
               "name": {
                 "title": "Authorizer Name",
-                "type": "string",
-                "description": "The name of the person who authorized this transaction"
+                "description": "The name of the person who authorized this transaction",
+                "minLength": 1,
+                "type": "string"
               }
             }
           }
@@ -308,13 +326,14 @@
           "$ref": "#/definitions/OrganizationReference"
         },
         "taxes": {
-          "title": "Taxes",
-          "description": "A detailed breakdown of taxes applied ",
+          "title": "Transaction Taxes",
+          "description": "A detailed breakdown of taxes applied to this transaction.",
+          "uniqueItems": true,
+          "minItems": 1,
           "type": [
             "array",
             "null"
           ],
-          "uniqueItems": true,
           "items": {
             "$ref": "#/definitions/Tax"
           }
@@ -326,12 +345,12 @@
         },
         "accountCode": {
           "title": "Account Code",
-          "description": "Code linking the payment to Accounts Payable code.",
+          "description": "Code linking the payment to the Accounts Payable code.",
           "$ref": "#/definitions/Classification"
         },
         "classification": {
           "title": "Transaction Classification",
-          "description": "A classification associated with items covered in this transaction.",
+          "description": "A classification of category associated with items covered in this transaction, such as CPV codes..",
           "$ref": "#/definitions/Classification"
         },
         "lineItems": {
@@ -342,24 +361,24 @@
             "null"
           ],
           "uniqueItems": true,
+          "minItems": 1,
           "required": [
             "id"
           ],
           "items": {
             "type": "object",
+            "minProperties": 1,
             "properties": {
               "id": {
                 "title": "Line Item ID",
                 "description": "A locally unique identifier for this Line Item. Used to track changes to this line item and to [merge](https://standard.open-contracting.org/latest/en/schema/merging/#merging) multiple releases to create a record.",
-                "type": [
-                  "string",
-                  "integer"
-                ],
-                "minLength": 1
+                "minLength": 1,
+                "type": "string"
               },
               "description": {
                 "title": "Line Item Description",
                 "description": "A description detailing the contents covered in this line item.",
+                "minLength": 1,
                 "type": [
                   "string",
                   "null"
@@ -386,11 +405,13 @@
               "discount": {
                 "title": "Discount",
                 "description": "Details of any discount that was applied.",
+                "minProperties": 1,
                 "type": "object",
                 "properties": {
                   "name": {
                     "title": "Discount Name",
                     "description": "A name describing the discount applied.",
+                    "minLength": 1,
                     "type": [
                       "string",
                       "null"
@@ -411,27 +432,35 @@
                   }
                 }
               },
-              "tax": {
-                "title": "Line Item Tax",
-                "description": "Tax per this line item.",
-                "$ref": "#/definitions/Tax"
+              "taxes": {
+                "title": "Line Item Taxes",
+                "description": "Taxes applied to this line item.",
+                "uniqueItems": true,
+                "minItems": 1,
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "$ref": "#/definitions/Tax"
+                }
               }
             }
           }
         }
       }
     },
-    "Transactions": {
+    "TransactionsDetails": {
       "title": "Transactions",
       "description": "An array of transactions with a detailed breakdown of costs, taxes and persons involved",
+      "minItems": 1,
+      "uniqueItems": true,
       "type": [
         "array",
         "null"
       ],
-      "minItems": 1,
-      "uniqueItems": true,
       "items": {
-        "$ref": "#/definitions/Transaction"
+        "$ref": "#/definitions/TransactionDetail"
       }
     }
   }
