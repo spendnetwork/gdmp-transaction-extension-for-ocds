@@ -132,6 +132,7 @@
       "title": "Tax Details",
       "description": "A breakdown of a single tax applied.",
       "type": "object",
+      "minProperties": 1,
       "required": [
         "id"
       ],
@@ -172,6 +173,7 @@
       "title": "Transaction",
       "description": "A record of monetary exchange including who was involved, and the option of unit measures, tax and item volumes.",
       "type": "object",
+      "minProperties": 1,
       "required": [
         "id"
       ],
@@ -426,6 +428,7 @@
         "array",
         "null"
       ],
+      "minItems": 1,
       "uniqueItems": true,
       "items": {
         "$ref": "#/definitions/Transaction"
