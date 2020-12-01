@@ -1,113 +1,453 @@
 {
-  "transactions": [
-    {
-      "id": "identifier for transaction, maybe a compiled id including date, PO number and buyer",
-      "source": "URL of source data or payments procedures",
-      "purchaseOrderNumber": "Purhcase order details",
-      "paymentMethod": "Mechanism for completing payment e.g. BACS or Purchase card",
-      "description": "description for transaction",
-      "keyDates": {
-        "invoiceReceiptDate": "2017-01-01T12:30:00Z",
-        "paymentDueDate": "2017-01-06T00:00:00Z",
-        "paymentApprovalDate": "2017-01-03T1700:00Z",
-        "paymentExecutedDate": "2017-03-20T00:00:00Z"
-      },
-      "value": {
-        "amount": 150000,
-        "currency": "GBP"
-      },
-      "payer": {
-        "id": "GB-GOR-XX1234",
-        "executor": {
-          "identifier": 12345678,
-          "name": "Amy Pearson"
-        },
-        "authorised": [
-          {
-            "identifier": 98765432,
-            "name": "Barbara Kennedy"
-          }
-        ]
-      },
-      "payee": {
-        "id": "GB-COH-99999999",
-        "name": "Example company"
-      },
-      "tax": [
-        {
-          "name": "name of tax applied",
-          "rate": {
-            "application": "percentage",
-            "amount": 10
-          },
-          "value": {
-            "amount": 10,
-            "currency": "GBP"
+  "definitions": {
+    "Document": {
+      "properties": {
+        "relatedTransactions": {
+          "title": "Related transactions",
+          "description": "Identifiers of any transactions detailed in the `Transactions` section relating to this document.",
+          "uniqueItems": true,
+          "minItems": 1,
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "minLength": 1,
+            "type": "string"
           }
         }
+      }
+    },
+    "ParticipationFee": {
+      "properties": {
+        "relatedTransactions": {
+          "title": "Related Transactions",
+          "description": "Identifiers of any transactions detailed in the `Transactions` section relating to fees exchanged for this bid.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Item": {
+      "properties": {
+        "relatedTransactions": {
+          "title": "Related Transactions",
+          "description": "Identifiers of any transactions detailed in the `Transactions` section related to this item detailed.",
+          "uniqueItems": true,
+          "minItems": 1,
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Milestone": {
+      "properties": {
+        "relatedTransactions": {
+          "title": "Related transactions",
+          "description": "Identifiers of any transactions detailed in the `Transactions` section relating to this award.",
+          "uniqueItems": true,
+          "minItems": 1,
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Award": {
+      "properties": {
+        "relatedTransactions": {
+          "title": "Related Transactions",
+          "description": "Identifiers of any transactions detailed in the `Transactions` section relating to this award.",
+          "uniqueItems": true,
+          "minItems": 1,
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Contract": {
+      "properties": {
+        "relatedTransactions": {
+          "title": "Related Transactions",
+          "description": "Identifiers of any transactions detailed in the `Transactions` section relating to this contract.",
+          "uniqueItems": true,
+          "minItems": 1,
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Bid": {
+      "properties": {
+        "relatedTransaction": {
+          "title": "Related transaction",
+          "description": "Identifiers of any transactions detailed in the `Transactions` section relating to fees exchanged for this bid.",
+          "uniqueItems": true,
+          "minItems": 1,
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Tax": {
+      "title": "Tax Details",
+      "description": "A breakdown of a single tax applied.",
+      "type": "object",
+      "minProperties": 1,
+      "required": [
+        "id"
       ],
-      "budgetCode": {
-        "id": "2020-04042891",
-        "description": "Code linking the payment to a budget"
-      },
-      "accountCode": {
-        "id": "1234567-00-23",
-        "description": "Code linking the payment to Accounts Payable code"
-      },
-      "procurementClassification": {
-        "scheme": "CPV",
-        "id": 44000000,
-        "description": "Drainage",
-        "uri": "https://simap.ted.europa.eu/web/simap/cpv"
-      },
-      "lineItems": [
-        {
-          "lineDescription": "string describing each item",
-          "unit": {
-            "scheme": "UNCEFACT",
-            "id": "HUR",
-            "name": "Hours"
-          },
-          "priceSpecification": {
-            "value": {
-              "amount": 250,
-              "currency": "GBP"
-            },
-            "quantity": {
-              "value": 2,
-              "unitCode": "HUR"
-            }
-          },
-          "value": {
-            "amount": 500,
-            "currency": "GBP"
-          },
-          "discount": {
-            "name": "name of discount",
-            "rate": {
-              "application": "percentage",
-              "amount": 0,
-              "value": {
-                "amount": 500,
-                "currency": "GBP"
-              }
-            },
-            "tax": [
-              {
-                "name": "name of tax applied",
-                "rate": {
-                  "application": "percentage",
-                  "amount": 10
-                },
-                "value": {
-                  "amount": 10,
-                  "currency": "GBP"
-                }
-              }
-            ]
+      "properties": {
+        "id": {
+          "title": "Tax Identifier",
+          "description": "A local identifier for this tax array item.",
+          "minLength": 1,
+          "type": "string"
+        },
+        "name": {
+          "title": "Name of Tax Applied",
+          "description": "A name or short description of the tax applied.",
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rate": {
+          "title": "Tax Rate",
+          "description": "The tax rate given as a decimal.",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "value": {
+          "title": "Taxed Amount",
+          "description": "The total amount resulting from the tax applied.",
+          "$ref": "#/definitions/Value"
+        }
+      }
+    },
+    "PaymentAuthorizer": {
+      "title": "Payment Authorizer",
+      "description": "The name and identifiers of a person who authorised the payment covered in this transaction.",
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "minProperties": 1,
+      "properties": {
+        "id": {
+          "title": "Authorizer Identifier",
+          "description": "An local identifier for this authorizer array item",
+          "minLength": 1,
+          "type": "string"
+        },
+        "name": {
+          "title": "Authorizer Name",
+          "description": "The name of the person who authorized this transaction",
+          "minLength": 1,
+          "type": "string"
+        }
+      }
+    },
+    "Discount": {
+      "title": "Discount",
+      "description": "Details of a discount applied, including a short description, the rate and the value discounted.",
+      "minProperties": 1,
+      "type": "object",
+      "properties": {
+        "description": {
+          "title": "Discount Description",
+          "description": "A short description or name describing the discount applied.",
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rate": {
+          "title": "Discount Rate",
+          "description": "The rate of the discount applied given as a decimal.",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "value": {
+          "title": "Discount value",
+          "description": "The value discounted that this applied discount removes.",
+          "$ref": "#/definitions/Value"
+        }
+      }
+    },
+    "LineItem": {
+      "title": "Line Item",
+      "description": "The details of an individual item if there is a breakdown of multiple items covered in this transaction.",
+      "type": "object",
+      "minProperties": 1,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "title": "Line Item ID",
+          "description": "A locally unique identifier for this Line Item. Used to track changes to this line item and to [merge](https://standard.open-contracting.org/latest/en/schema/merging/#merging) multiple releases to create a record.",
+          "minLength": 1,
+          "type": "string"
+        },
+        "description": {
+          "title": "Line Item Description",
+          "description": "A description detailing the contents covered in this line item.",
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unit": {
+          "title": "Line Item Unit",
+          "description": "A description of the unit in which the supplies, services or works are provided (e.g. hours, kilograms) and the unit-price.",
+          "$ref": "#/definitions/Classification"
+        },
+        "quantity": {
+          "title": "Quantity",
+          "description": "The number of units to be provided.",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "value": {
+          "title": "Total Line Item Value",
+          "$ref": "#/definitions/Value",
+          "description": "The total value of this line item."
+        },
+        "discount": {
+          "title": "Discount",
+          "description": "Details of any discount that was applied.",
+          "$ref": "#/definitions/Discount"
+        },
+        "taxes": {
+          "title": "Line Item Taxes",
+          "description": "Taxes applied to this line item.",
+          "uniqueItems": true,
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tax"
           }
         }
-      ]
+      }
+    },
+    "TransactionDetail": {
+      "title": "Transaction",
+      "description": "A record of monetary exchange including who was involved, and the option of unit measures, tax and item volumes.",
+      "type": "object",
+      "minProperties": 1,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "title": "Transaction ID",
+          "minLength": 1,
+          "type": [
+            "string",
+            "integer"
+          ],
+          "description": "A unique identifier for this transaction, SHOULD be compiled id including date, PO number and buyer."
+        },
+        "sourceUrl": {
+          "title": "Transaction Source URL",
+          "description": "A URI pointing to the source data or payments procedures of this transaction.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "purchaseOrderNumber": {
+          "title": "Purchase Order Number",
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Purchase order identification number."
+        },
+        "paymentMethod": {
+          "title": "Payment Method",
+          "description": "Mechanism for completing payment, for example BACS or Purchase card.",
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "description": {
+          "title": "Transaction description",
+          "description": "An string covering details for this transaction.",
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "invoiceReceiptDate": {
+          "title": "Invoice Receipt Date",
+          "description": "The date on which the invoice is received",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "paymentDueDate": {
+          "title": "Payment Due Date",
+          "description": "The date on which this payment is due.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "paymentApprovalDate": {
+          "title": "Payment Approval Date",
+          "description": "The date on which this payment is approved.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "paymentExecutedDate": {
+          "title": "Payment Execution Date",
+          "description": "The date on which this payment is executed.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "value": {
+          "title": "Transaction value",
+          "$ref": "#/definitions/Value",
+          "description": "The total value covered in this transaction."
+        },
+        "payer": {
+          "title": "Payer",
+          "description": "A reference for the organization from which the funds in this transaction originate.",
+          "$ref": "#/definitions/OrganizationReference"
+        },
+        "paymentExecutor": {
+          "title": "Payment executor",
+          "description": "The name of the person who executed the payment of this transaction",
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "paymentAuthorizers": {
+          "title": "Payment Authorizers",
+          "description": "An array of details of people involved in the authorization of this payment.",
+          "uniqueItems": true,
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PaymentAuthorizer"
+          }
+        },
+        "payee": {
+          "title": "Payee",
+          "description": "An organization reference for the organization which receives the funds in this transaction.",
+          "$ref": "#/definitions/OrganizationReference"
+        },
+        "taxes": {
+          "title": "Transaction Taxes",
+          "description": "A detailed breakdown of taxes applied to this transaction.",
+          "uniqueItems": true,
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tax"
+          }
+        },
+        "budgetCode": {
+          "title": "Budget Code",
+          "description": "Reference code for the budget of this transaction.",
+          "$ref": "#/definitions/Classification"
+        },
+        "accountCode": {
+          "title": "Account Code",
+          "description": "Code linking the payment to the Accounts Payable code.",
+          "$ref": "#/definitions/Classification"
+        },
+        "classification": {
+          "title": "Transaction Classification",
+          "description": "A classification of category associated with items covered in this transaction, such as CPV codes..",
+          "$ref": "#/definitions/Classification"
+        },
+        "lineItems": {
+          "title": "Line Items",
+          "description": "Array of the breakdown of individual items covered in this transaction.",
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/LineItem"
+          }
+        }
+      }
+    },
+    "TransactionsDetails": {
+      "title": "Transactions",
+      "description": "An array of transactions with a detailed breakdown of costs, taxes and persons involved",
+      "minItems": 1,
+      "uniqueItems": true,
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/TransactionDetail"
+      }
     }
-  ]
+  }
 }

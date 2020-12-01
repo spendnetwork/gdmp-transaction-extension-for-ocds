@@ -6,13 +6,15 @@
     "en": "A detailed transaction extension created by the Global Digital Marketplace programme from the UK Government Digital Service. The extension includes both summary transaction data and detailed information on each transaction, including unit measures, tax and item volumes. The extension is designed to support anti-corruption initiatives around the world."
   },
   "documentationUrl": {
-    "en": "https://extensions.open-contracting.org/en/extensions/gdmp-transaction/"
+    "en": "https://github.com/spendnetwork/ocds_transactionDetails_extension"
   },
   "schemas": [
     "release-schema.json"
   ],
-  "codelists": [
-    "emptyCodelist.csv"
+  "testDependencies": [
+    "https://raw.githubusercontent.com/open-contracting-extensions/ocds_bid_extension/master/extension.json",
+    "https://raw.githubusercontent.com/open-contracting-extensions/ocds_finance_extension/master/extension.json",
+    "https://raw.githubusercontent.com/open-contracting-extensions/ocds_participationFee_extension/master/extension.json"
   ],
   "compatibility": [
     "1.1"
