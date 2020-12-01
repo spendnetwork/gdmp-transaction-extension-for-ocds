@@ -126,24 +126,6 @@
         }
       }
     },
-    "Finance": {
-      "properties": {
-        "relatedTransactions": {
-          "title": "Related Transactions",
-          "description": "Identifiers of any transactions detailed in the `Transactions` section which were financed by this agreement.",
-          "uniqueItems": true,
-          "minItems": 1,
-          "type": [
-            "array",
-            "null"
-          ],
-          "items": {
-            "minLength": 1,
-            "type": "string"
-          }
-        }
-      }
-    },
     "Tax": {
       "title": "Tax Details",
       "description": "A breakdown of a single tax applied.",
@@ -180,6 +162,114 @@
           "title": "Taxed Amount",
           "description": "The total amount resulting from the tax applied.",
           "$ref": "#/definitions/Value"
+        }
+      }
+    },
+    "PaymentAuthorizer": {
+      "title": "Payment Authorizer",
+      "description": "The name and identifiers of a person who authorised the payment covered in this transaction.",
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "minProperties": 1,
+      "properties": {
+        "id": {
+          "title": "Authorizer Identifier",
+          "description": "An local identifier for this authorizer array item",
+          "minLength": 1,
+          "type": "string"
+        },
+        "name": {
+          "title": "Authorizer Name",
+          "description": "The name of the person who authorized this transaction",
+          "minLength": 1,
+          "type": "string"
+        }
+      }
+    },
+    "LineItem": {
+      "title": "Line Item",
+      "description": "The details of an individual item if there is a breakdown of multiple items covered in this transaction.",
+      "type": "object",
+      "minProperties": 1,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "title": "Line Item ID",
+          "description": "A locally unique identifier for this Line Item. Used to track changes to this line item and to [merge](https://standard.open-contracting.org/latest/en/schema/merging/#merging) multiple releases to create a record.",
+          "minLength": 1,
+          "type": "string"
+        },
+        "description": {
+          "title": "Line Item Description",
+          "description": "A description detailing the contents covered in this line item.",
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unit": {
+          "title": "Line Item Unit",
+          "description": "A description of the unit in which the supplies, services or works are provided (e.g. hours, kilograms) and the unit-price.",
+          "$ref": "#/definitions/Classification"
+        },
+        "quantity": {
+          "title": "Quantity",
+          "description": "The number of units to be provided.",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "value": {
+          "title": "Total Line Item Value",
+          "$ref": "#/definitions/Value",
+          "description": "The total value of this line item."
+        },
+        "discount": {
+          "title": "Discount",
+          "description": "Details of any discount that was applied.",
+          "minProperties": 1,
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Discount Name",
+              "description": "A name describing the discount applied.",
+              "minLength": 1,
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "rate": {
+              "title": "Discount Rate",
+              "description": "The rate of the discount applied given as a decimal.",
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "value": {
+              "title": "Discount value",
+              "$ref": "#/definitions/Value",
+              "description": "The value discounted in this item."
+            }
+          }
+        },
+        "taxes": {
+          "title": "Line Item Taxes",
+          "description": "Taxes applied to this line item.",
+          "uniqueItems": true,
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tax"
+          }
         }
       }
     },
@@ -302,22 +392,7 @@
             "null"
           ],
           "items": {
-            "type": "object",
-            "minProperties": 1,
-            "properties": {
-              "id": {
-                "title": "Authorizer Identifier",
-                "description": "An local identifier for this authorizer array item",
-                "minLength": 1,
-                "type": "string"
-              },
-              "name": {
-                "title": "Authorizer Name",
-                "description": "The name of the person who authorized this transaction",
-                "minLength": 1,
-                "type": "string"
-              }
-            }
+            "$ref": "#/definitions/PaymentAuthorizer"
           }
         },
         "payee": {
@@ -330,10 +405,7 @@
           "description": "A detailed breakdown of taxes applied to this transaction.",
           "uniqueItems": true,
           "minItems": 1,
-          "type": [
-            "array",
-            "null"
-          ],
+          "type": "array",
           "items": {
             "$ref": "#/definitions/Tax"
           }
@@ -356,96 +428,11 @@
         "lineItems": {
           "title": "Line Items",
           "description": "Array of the breakdown of individual items covered in this transaction.",
-          "type": [
-            "array",
-            "null"
-          ],
+          "type": "array",
           "uniqueItems": true,
           "minItems": 1,
-          "required": [
-            "id"
-          ],
           "items": {
-            "type": "object",
-            "minProperties": 1,
-            "properties": {
-              "id": {
-                "title": "Line Item ID",
-                "description": "A locally unique identifier for this Line Item. Used to track changes to this line item and to [merge](https://standard.open-contracting.org/latest/en/schema/merging/#merging) multiple releases to create a record.",
-                "minLength": 1,
-                "type": "string"
-              },
-              "description": {
-                "title": "Line Item Description",
-                "description": "A description detailing the contents covered in this line item.",
-                "minLength": 1,
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "unit": {
-                "title": "Line Item Unit",
-                "description": "A description of the unit in which the supplies, services or works are provided (e.g. hours, kilograms) and the unit-price.",
-                "$ref": "#/definitions/Classification"
-              },
-              "quantity": {
-                "title": "Quantity",
-                "description": "The number of units to be provided.",
-                "type": [
-                  "number",
-                  "null"
-                ]
-              },
-              "value": {
-                "title": "Total Line Item Value",
-                "$ref": "#/definitions/Value",
-                "description": "The total value of this line item."
-              },
-              "discount": {
-                "title": "Discount",
-                "description": "Details of any discount that was applied.",
-                "minProperties": 1,
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "title": "Discount Name",
-                    "description": "A name describing the discount applied.",
-                    "minLength": 1,
-                    "type": [
-                      "string",
-                      "null"
-                    ]
-                  },
-                  "rate": {
-                    "title": "Discount Rate",
-                    "description": "The rate of the discount applied given as a decimal.",
-                    "type": [
-                      "number",
-                      "null"
-                    ]
-                  },
-                  "value": {
-                    "title": "Discount value",
-                    "$ref": "#/definitions/Value",
-                    "description": "The value discounted in this item."
-                  }
-                }
-              },
-              "taxes": {
-                "title": "Line Item Taxes",
-                "description": "Taxes applied to this line item.",
-                "uniqueItems": true,
-                "minItems": 1,
-                "type": [
-                  "array",
-                  "null"
-                ],
-                "items": {
-                  "$ref": "#/definitions/Tax"
-                }
-              }
-            }
+            "$ref": "#/definitions/LineItem"
           }
         }
       }
@@ -455,10 +442,7 @@
       "description": "An array of transactions with a detailed breakdown of costs, taxes and persons involved",
       "minItems": 1,
       "uniqueItems": true,
-      "type": [
-        "array",
-        "null"
-      ],
+      "type": "array",
       "items": {
         "$ref": "#/definitions/TransactionDetail"
       }
