@@ -189,6 +189,36 @@
         }
       }
     },
+    "Discount": {
+      "title": "Discount",
+      "description": "Details of a discount applied, including a short description, the rate and the value discounted.",
+      "minProperties": 1,
+      "type": "object",
+      "properties": {
+        "description": {
+          "title": "Discount Description",
+          "description": "A short description or name describing the discount applied.",
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rate": {
+          "title": "Discount Rate",
+          "description": "The rate of the discount applied given as a decimal.",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "value": {
+          "title": "Discount value",
+          "description": "The value discounted that this applied discount removes.",
+          "$ref": "#/definitions/Value"
+        }
+      }
+    },
     "LineItem": {
       "title": "Line Item",
       "description": "The details of an individual item if there is a breakdown of multiple items covered in this transaction.",
@@ -234,32 +264,7 @@
         "discount": {
           "title": "Discount",
           "description": "Details of any discount that was applied.",
-          "minProperties": 1,
-          "type": "object",
-          "properties": {
-            "name": {
-              "title": "Discount Name",
-              "description": "A name describing the discount applied.",
-              "minLength": 1,
-              "type": [
-                "string",
-                "null"
-              ]
-            },
-            "rate": {
-              "title": "Discount Rate",
-              "description": "The rate of the discount applied given as a decimal.",
-              "type": [
-                "number",
-                "null"
-              ]
-            },
-            "value": {
-              "title": "Discount value",
-              "$ref": "#/definitions/Value",
-              "description": "The value discounted in this item."
-            }
-          }
+          "$ref": "#/definitions/Discount"
         },
         "taxes": {
           "title": "Line Item Taxes",
@@ -387,10 +392,7 @@
           "description": "An array of details of people involved in the authorization of this payment.",
           "uniqueItems": true,
           "minItems": 1,
-          "type": [
-            "array",
-            "null"
-          ],
+          "type": "array",
           "items": {
             "$ref": "#/definitions/PaymentAuthorizer"
           }
