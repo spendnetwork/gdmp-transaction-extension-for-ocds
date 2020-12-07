@@ -8,7 +8,7 @@ This extension was designed to support anti-corruption intiatives around the wor
 
 ## Design
 
-This extension has been designed to allow publishers to link either Accounts Payable data or Bank Statement data into the existing OCDS contract, but in addition to provide detailed reporting on every element that is usually reported in a single invoice, for instance, the extension includes the ability to record taxes, discounts and line item fees. This granular design is critical for being able to compare the price of different items and the cost of each.
+This extension has been designed to allow publishers to link either Accounts Payable data or Bank Statement data into the existing OCDS contract, but in addition to provide detailed reporting on every element that is usually reported in a single invoice, for instance, the extension includes the ability to record taxes, discounts and line item fees. This granular design is critical for being able to compare the price of different items and the cost of each. This extension uses the proposed [`ValueBreakdown`](https://github.com/open-contracting/standard/issues/1070) extension, with an added rate field.
 
 ## Deployment
 
