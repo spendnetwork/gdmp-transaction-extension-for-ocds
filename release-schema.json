@@ -3,11 +3,10 @@
     "ParticipationFee": {
       "properties": {
         "transactions": {
-          "title": "Transactions",
+          "title": "Participation Fee Transactions",
           "description": "Details of any transactions relating to fees exchanged for this bid.",
           "type": [
-            "array",
-            "null"
+            "array"
           ],
           "uniqueItems": true,
           "minItems": 1,
@@ -94,13 +93,7 @@
       }
     },
     "Transaction": {
-      "title": "Transaction",
-      "description": "A record of spending transaction including who was involved, and the option of unit measures, tax and item volumes.",
-      "type": "object",
       "minProperties": 1,
-      "required": [
-        "id"
-      ],
       "properties": {
         "purchaseOrderNumber": {
           "title": "Purchase Order Number",
