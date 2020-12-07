@@ -1,28 +1,10 @@
 {
   "definitions": {
-    "Document": {
-      "properties": {
-        "relatedTransactions": {
-          "title": "Related transactions",
-          "description": "Identifiers of any transactions detailed in the `Transactions` section relating to this document.",
-          "uniqueItems": true,
-          "minItems": 1,
-          "type": [
-            "array",
-            "null"
-          ],
-          "items": {
-            "minLength": 1,
-            "type": "string"
-          }
-        }
-      }
-    },
     "ParticipationFee": {
       "properties": {
-        "relatedTransactions": {
-          "title": "Related Transactions",
-          "description": "Identifiers of any transactions detailed in the `Transactions` section relating to fees exchanged for this bid.",
+        "transactions": {
+          "title": "Transactions",
+          "description": "Details of any transactions relating to fees exchanged for this bid.",
           "type": [
             "array",
             "null"
@@ -30,105 +12,14 @@
           "uniqueItems": true,
           "minItems": 1,
           "items": {
-            "minLength": 1,
-            "type": "string"
-          }
-        }
-      }
-    },
-    "Item": {
-      "properties": {
-        "relatedTransactions": {
-          "title": "Related Transactions",
-          "description": "Identifiers of any transactions detailed in the `Transactions` section related to this item detailed.",
-          "uniqueItems": true,
-          "minItems": 1,
-          "type": [
-            "array",
-            "null"
-          ],
-          "items": {
-            "minLength": 1,
-            "type": "string"
-          }
-        }
-      }
-    },
-    "Milestone": {
-      "properties": {
-        "relatedTransactions": {
-          "title": "Related transactions",
-          "description": "Identifiers of any transactions detailed in the `Transactions` section relating to this award.",
-          "uniqueItems": true,
-          "minItems": 1,
-          "type": [
-            "array",
-            "null"
-          ],
-          "items": {
-            "minLength": 1,
-            "type": "string"
-          }
-        }
-      }
-    },
-    "Award": {
-      "properties": {
-        "relatedTransactions": {
-          "title": "Related Transactions",
-          "description": "Identifiers of any transactions detailed in the `Transactions` section relating to this award.",
-          "uniqueItems": true,
-          "minItems": 1,
-          "type": [
-            "array",
-            "null"
-          ],
-          "items": {
-            "minLength": 1,
-            "type": "string"
-          }
-        }
-      }
-    },
-    "Contract": {
-      "properties": {
-        "relatedTransactions": {
-          "title": "Related Transactions",
-          "description": "Identifiers of any transactions detailed in the `Transactions` section relating to this contract.",
-          "uniqueItems": true,
-          "minItems": 1,
-          "type": [
-            "array",
-            "null"
-          ],
-          "items": {
-            "minLength": 1,
-            "type": "string"
-          }
-        }
-      }
-    },
-    "Bid": {
-      "properties": {
-        "relatedTransaction": {
-          "title": "Related transaction",
-          "description": "Identifiers of any transactions detailed in the `Transactions` section relating to fees exchanged for this bid.",
-          "uniqueItems": true,
-          "minItems": 1,
-          "type": [
-            "array",
-            "null"
-          ],
-          "items": {
-            "minLength": 1,
-            "type": "string"
+            "$ref": "#/definitions/Transaction"
           }
         }
       }
     },
     "ValueBreakdown": {
       "title": "Value Breakdown",
-      "description": "Information on a single value of importance, including net, gross, taxes or discounts applied.",
+      "description": "Information on a single value of importance with the option to specify the net and gross values along with any taxes or discounts applied.",
       "type": "object",
       "minProperties": 1,
       "required": [
@@ -189,87 +80,28 @@
         }
       }
     },
-    "LineItem": {
-      "title": "Line Item",
-      "description": "The details of an individual item if there is a breakdown of multiple items covered in this transaction.",
-      "type": "object",
-      "minProperties": 1,
-      "required": [
-        "id"
-      ],
+    "Item": {
       "properties": {
-        "id": {
-          "title": "Line Item ID",
-          "description": "A locally unique identifier for this Line Item. Used to track changes to this line item and to [merge](https://standard.open-contracting.org/latest/en/schema/merging/#merging) multiple releases to create a record.",
-          "minLength": 1,
-          "type": "string"
-        },
-        "description": {
-          "title": "Line Item Description",
-          "description": "A description detailing the contents covered in this line item.",
-          "minLength": 1,
-          "type": [
-            "string",
-            "null"
-          ]
-        },
         "unit": {
-          "title": "Line Item Unit",
-          "description": "A description of the unit in which the supplies, services or works are provided (e.g. hours, kilograms) and the unit-price.",
-          "$ref": "#/definitions/Classification"
-        },
-        "quantity": {
-          "title": "Quantity",
-          "description": "The number of units to be provided.",
-          "type": [
-            "number",
-            "null"
-          ]
-        },
-        "value": {
-          "title": "Total Line Item Value",
-          "$ref": "#/definitions/Value",
-          "description": "The total value of this line item."
-        },
-        "valueBreakdown": {
-          "title": "Line Item Value Breakdown",
-          "description": "The breakdown of the value for this line item, including any taxes or discounts applied.",
-          "type": "array",
-          "uniqueItems": true,
-          "minItems": 1,
-          "items": {
-            "$ref": "#/definitions/ValueBreakdown"
+          "properties": {
+            "valueBreakdown": {
+              "title": "Value Breakdown",
+              "description": "The breakdown of the monetary value of a single unit, with the option of including the gross and net value alongside any taxes or discounts applied.",
+              "$ref": "#/definitions/ValueBreakdown"
+            }
           }
         }
       }
     },
-    "TransactionDetail": {
+    "Transaction": {
       "title": "Transaction",
-      "description": "A record of monetary exchange including who was involved, and the option of unit measures, tax and item volumes.",
+      "description": "A record of spending transaction including who was involved, and the option of unit measures, tax and item volumes.",
       "type": "object",
       "minProperties": 1,
       "required": [
         "id"
       ],
       "properties": {
-        "id": {
-          "title": "Transaction ID",
-          "minLength": 1,
-          "type": [
-            "string",
-            "integer"
-          ],
-          "description": "A unique identifier for this transaction, SHOULD be compiled id including date, PO number and buyer."
-        },
-        "sourceUrl": {
-          "title": "Transaction Source URL",
-          "description": "A URI pointing to the source data or payments procedures of this transaction.",
-          "type": [
-            "string",
-            "null"
-          ],
-          "format": "uri"
-        },
         "purchaseOrderNumber": {
           "title": "Purchase Order Number",
           "minLength": 1,
@@ -299,7 +131,7 @@
         },
         "invoiceReceiptDate": {
           "title": "Invoice Receipt Date",
-          "description": "The date on which the invoice is received",
+          "description": "The date on which the invoice was received.",
           "type": [
             "string",
             "null"
@@ -333,11 +165,6 @@
           ],
           "format": "date-time"
         },
-        "value": {
-          "title": "Transaction value",
-          "$ref": "#/definitions/Value",
-          "description": "The total value covered in this transaction."
-        },
         "valueBreakdown": {
           "title": "Value Breakdown",
           "description": "A breakdown of the net and gross value, including details of any tax or discount applied. A discount is indicated by a negative amount.",
@@ -347,11 +174,6 @@
           "items": {
             "$ref": "#/definitions/ValueBreakdown"
           }
-        },
-        "payer": {
-          "title": "Payer",
-          "description": "A reference for the organization from which the funds in this transaction originate.",
-          "$ref": "#/definitions/OrganizationReference"
         },
         "paymentExecutor": {
           "title": "Payment executor",
@@ -372,11 +194,6 @@
             "$ref": "#/definitions/PaymentAuthorizer"
           }
         },
-        "payee": {
-          "title": "Payee",
-          "description": "An organization reference for the organization which receives the funds in this transaction.",
-          "$ref": "#/definitions/OrganizationReference"
-        },
         "budgetCode": {
           "title": "Budget Code",
           "description": "Reference code for the budget of this transaction.",
@@ -392,26 +209,34 @@
           "description": "A classification of category associated with items covered in this transaction, such as CPV codes..",
           "$ref": "#/definitions/Classification"
         },
-        "lineItems": {
-          "title": "Line Items",
-          "description": "Array of the breakdown of individual items covered in this transaction.",
-          "type": "array",
+        "relatedLineItems": {
+          "title": "Related Line Items",
+          "description": "Identifiers of items detailed in the `Items` class which are covered by this transaction.",
+          "type": [
+            "array",
+            "null"
+          ],
           "uniqueItems": true,
           "minItems": 1,
           "items": {
-            "$ref": "#/definitions/LineItem"
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "relatedDocuments": {
+          "title": "Related Documents",
+          "description": "Identifiers of any items in the `Documents` array which are related to this transaction.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "minLength": 1,
+            "type": "string"
           }
         }
-      }
-    },
-    "TransactionsDetails": {
-      "title": "Transactions",
-      "description": "An array of transactions with a detailed breakdown of costs, taxes and persons involved",
-      "minItems": 1,
-      "uniqueItems": true,
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/TransactionDetail"
       }
     }
   }
