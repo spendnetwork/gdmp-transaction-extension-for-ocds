@@ -81,14 +81,10 @@
     },
     "Item": {
       "properties": {
-        "unit": {
-          "properties": {
-            "valueBreakdown": {
-              "title": "Value Breakdown",
-              "description": "The breakdown of the monetary value of a single unit, with the option of including the gross and net value alongside any taxes or discounts applied.",
-              "$ref": "#/definitions/ValueBreakdown"
-            }
-          }
+        "valueBreakdown": {
+          "title": "Value Breakdown",
+          "description": "The breakdown of the value covered in this item, with the option of including the gross and net value alongside any taxes or discounts applied.",
+          "$ref": "#/definitions/ValueBreakdown"
         }
       }
     },
