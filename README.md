@@ -32,11 +32,11 @@ High volumes of transaction data, e.g. a taxi contract where there might be doze
   },
   "releases": [
     {
-      "ocid": "ocds-abce-12355",
+      "ocid": "ocds-1234-abce-12355",
       "id": "11",
       "date": "2020-12-01T09:51:44Z",
       "tag": [
-        "tender"
+        "contract"
       ],
       "initiationType": "tender",
       "parties": [
@@ -52,26 +52,11 @@ High volumes of transaction data, e.g. a taxi contract where there might be doze
             "countryName": "United Kingdom"
           },
           "contactPoint": {
-            "email": "noreply@proactis.com"
+            "email": "noreply@someone.com"
           },
           "roles": [
             "payee"
-          ],
-          "details": {
-            "url": "http://www.proactis.com",
-            "classifications": [
-              {
-                "scheme": "TED_CA_TYPE",
-                "id": "BODY_PUBLIC",
-                "name": "Body governed by public law"
-              },
-              {
-                "scheme": "COFOG",
-                "id": "10",
-                "name": "Social protection"
-              }
-            ]
-          }
+          ]
         },
         {
           "name": "Some Company Ltd.",
@@ -89,120 +74,146 @@ High volumes of transaction data, e.g. a taxi contract where there might be doze
           },
           "roles": [
             "payer"
-          ],
-          "details": {
-            "url": "http://www.proactis.com",
-            "classifications": [
-              {
-                "scheme": "TED_CA_TYPE",
-                "id": "BODY_PUBLIC",
-                "name": "Body governed by public law"
-              },
-              {
-                "scheme": "COFOG",
-                "id": "10",
-                "name": "Social protection"
-              }
-            ]
-          }
+          ]
         }
       ],
-      "transactionDetails": [
+      "awards": [
         {
-          "id": "ABC-123",
-          "source": "http://www.example.com/payments/FY17",
-          "purchaseOrderNumber": "20200405-2123330",
-          "paymentMethod": "Purchase card",
-          "description": "This is a record of a transaction of item 1 between group A and group B",
-          "invoiceReceiptDate": "2017-01-01T12:30:00Z",
-          "paymentDueDate": "2017-01-06T00:00:00Z",
-          "paymentApprovalDate": "2017-01-03T1700:00Z",
-          "paymentExecutedDate": "2017-03-20T00:00:00Z",
-          "value": {
-            "amount": 150000,
-            "currency": "GBP"
-          },
-          "payer": {
-            "id": "GB-GOR-XX1234",
-            "name": "Some Company Ltd."
-          },
-          "paymentExecutor": "Joseph Bloggs",
-          "paymentAuthorizers": [
+          "id": "123",
+          "title": "Award of contract"
+        }
+      ],
+      "contracts": [
+        {
+          "id": "1a",
+          "awardID": "123",
+          "title": "Construction of Something",
+          "items": [
             {
-              "identifier": 98765432,
-              "name": "Sim Kennedy"
-            },
-            {
-              "identifier": 12345432,
-              "name": "Kim Sennedy"
-            }
-          ],
-          "payee": {
-            "id": "GB-COH-99999999",
-            "name": "Example company"
-          },
-          "taxes": [
-            {
-              "id": "1",
-              "name": "Cat Tax",
-              "rate": "0.1",
-              "value": {
-                "amount": 10,
-                "currency": "GBP"
-              }
-            }
-          ],
-          "budgetCode": {
-            "scheme": "BugdSche",
-            "id": "2020-04042891",
-            "description": "Highways and streetscene"
-          },
-          "accountCode": {
-            "scheme": "AccSche",
-            "id": "1234567-00-23",
-            "description": "Repairs and upkeep"
-          },
-          "procurementClassification": {
-            "scheme": "CPV",
-            "id": 44000000,
-            "description": "Drainage",
-            "uri": "https://simap.ted.europa.eu/web/simap/cpv"
-          },
-          "lineItems": [
-            {
-              "id": "1",
+              "id": "ia",
               "description": "One example item",
+              "quantity": 2,
               "unit": {
                 "scheme": "UNCEFACT",
                 "id": "HUR",
-                "description": "Hours"
-              },
-              "quantity": "2",
-              "value": {
-                "amount": 500,
-                "currency": "GBP"
-              },
-              "discount": {
-                "description": "Discount because of reason A.",
-                "rate": 0.01,
+                "name": "Hours",
                 "value": {
-                  "amount": 1,
+                  "amount": 250,
                   "currency": "GBP"
                 }
               },
-              "taxes": [
+              "valueBreakdown": [
                 {
-                  "id": "123",
-                  "name": "B Tax",
-                  "rate": 0.1,
+                  "id": "v1",
+                  "description": "Net Price",
                   "value": {
-                    "amount": 10,
+                    "amount": 525,
+                    "currency": "GBP"
+                  }
+                },
+                {
+                  "id": "v2",
+                  "description": "Tax Applied",
+                  "rate": 0.01,
+                  "value": {
+                    "amount": 50,
+                    "currency": "GBP"
+                  }
+                },
+                {
+                  "id": "v3",
+                  "description": "Discount",
+                  "rate": -0.005,
+                  "value": {
+                    "amount": -25,
                     "currency": "GBP"
                   }
                 }
               ]
             }
-          ]
+          ],
+          "implementation": {
+            "transactions": [
+              {
+                "id": "ABC-123",
+                "source": "http://www.example.com/payments/FY17",
+                "purchaseOrderNumber": "20200405-2123330",
+                "paymentMethod": "Purchase card",
+                "description": "This is a record of a transaction of item 1 between group A and group B",
+                "invoiceReceiptDate": "2017-01-01T12:30:00Z",
+                "paymentDueDate": "2017-01-06T00:00:00Z",
+                "paymentApprovalDate": "2017-01-03T00:00:00Z",
+                "paymentExecutedDate": "2017-03-20T00:00:00Z",
+                "value": {
+                  "amount": 157500,
+                  "currency": "GBP"
+                },
+                "valueBreakdown": [
+                  {
+                    "id": "1",
+                    "description": "Net Value",
+                    "value": {
+                      "amount": 150000,
+                      "currency": "GBP"
+                    }
+                  },
+                  {
+                    "id": "2",
+                    "description": "Gross Value",
+                    "value": {
+                      "amount": 157500,
+                      "currency": "GBP"
+                    }
+                  },
+                  {
+                    "id": "3",
+                    "description": "Example Tax",
+                    "rate": 0.05,
+                    "value": {
+                      "amount": 7500,
+                      "currency": "GBP"
+                    }
+                  }
+                ],
+                "payer": {
+                  "id": "GB-GOR-XX1234",
+                  "name": "Some Company Ltd."
+                },
+                "paymentExecutor": "Joseph Bloggs",
+                "paymentAuthorizers": [
+                  {
+                    "id": "98765432",
+                    "name": "Mr Sim Kennedy"
+                  },
+                  {
+                    "id": "12345432",
+                    "name": "Ms Kim Sennedy"
+                  }
+                ],
+                "payee": {
+                  "id": "GB-COH-99999999",
+                  "name": "Example company"
+                },
+                "budgetCode": {
+                  "id": "2020-04042891",
+                  "description": "Highways and streetscene"
+                },
+                "accountCode": {
+                  "id": "1234567-00-23",
+                  "description": "Repairs and upkeep"
+                },
+                "classification": {
+                  "scheme": "CPV",
+                  "id": 44000000,
+                  "description": "Drainage",
+                  "uri": "https://simap.ted.europa.eu/web/simap/cpv"
+                },
+                "relatedLineItems": [
+                  "ia"
+                ]
+              }
+            ]
+          }
         }
       ],
       "language": "en"
