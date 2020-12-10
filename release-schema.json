@@ -84,7 +84,12 @@
         "valueBreakdown": {
           "title": "Value Breakdown",
           "description": "The breakdown of the value covered in this item, with the option of including the gross and net value alongside any taxes or discounts applied.",
-          "$ref": "#/definitions/ValueBreakdown"
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/ValueBreakdown"
+          }
         }
       }
     },
