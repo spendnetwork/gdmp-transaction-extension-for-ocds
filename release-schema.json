@@ -97,7 +97,7 @@
     },
     "Person": {
       "title": "Person Details",
-      "description": "Name and ID of an invovled person, and a linked organization ref where it exists.",
+      "description": "Name and ID of an invovled person, and a linked organization reference where it exists.",
       "type": "object",
       "minProperties": 1,
       "required": [
