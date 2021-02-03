@@ -95,9 +95,9 @@
         }
       }
     },
-    "Person": {
+    "ResponsiblePerson": {
       "title": "Person Details",
-      "description": "Name and ID of an invovled person, and a linked organization reference where it exists.",
+      "description": "Name and ID of an involved person, and a linked organization reference where it exists.",
       "type": "object",
       "minProperties": 1,
       "required": [
@@ -205,7 +205,7 @@
         "executor": {
           "title": "Payment executor",
           "description": "The name of the person who executed the payment of this transaction",
-          "$ref": "#/definitions/Person"
+          "$ref": "#/definitions/ResponsiblePerson"
         },
         "authorizers": {
           "title": "Payment Authorizers",
@@ -214,7 +214,7 @@
           "minItems": 1,
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Person"
+            "$ref": "#/definitions/ResponsiblePerson"
           }
         },
         "budgetCode": {
