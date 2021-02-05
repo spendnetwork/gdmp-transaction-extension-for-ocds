@@ -179,15 +179,30 @@ High volumes of transaction data, e.g. a taxi contract where there might be doze
                   "id": "GB-GOR-XX1234",
                   "name": "Some Company Ltd."
                 },
-                "paymentExecutor": "Joseph Bloggs",
-                "paymentAuthorizers": [
+                "executor": {
+                  "id": "47",
+                  "name": "Joseph Bloggs",
+                  "organization": {
+                    "name": "Some Company Ltd.",
+                    "id": "GB-GOR-XX1234"
+                  }
+                },
+                "authorizers": [
                   {
                     "id": "98765432",
-                    "name": "Mr Sim Kennedy"
+                    "name": "Mr Sim Kennedy",
+                    "organization": {
+                      "name": "Some Company Ltd.",
+                      "id": "GB-GOR-XX1234"
+                    }
                   },
                   {
                     "id": "12345432",
-                    "name": "Ms Kim Sennedy"
+                    "name": "Ms Kim Sennedy",
+                    "organization": {
+                      "name": "Some Company Ltd.",
+                      "id": "GB-GOR-XX1234"
+                    }
                   }
                 ],
                 "payee": {
